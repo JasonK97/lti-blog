@@ -1,1 +1,29 @@
+.articleTile {
+    border: 1px solid rgb(230, 230, 230);
+    border-radius: 15px;
+    text-align: center;
+    padding: 0px 0px 15px 0px;
+    margin: 20px 30% 15px 30%;
+    transition: all 0.2s ease-in-out;
+}
 
+.articleTile:hover {
+    box-shadow: 10px 10px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transform: translate3d(0px, -1px, 0px);
+}
+
+.articleImg {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.textContent {
+    /* border-left: 2px solid rgb(230, 230, 230);
+    border-right: 2px solid rgb(230, 230, 230); */
+    padding: 0px 15px 15px 15px;
+}
+
+.contReading {
+    text-decoration: none;
+    color: black;
+}
