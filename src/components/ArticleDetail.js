@@ -14,71 +14,17 @@ const propsWithUniqueKey = function(props, key) {
 // This function changes the way that the HTML is loaded
 export const htmlSerializer = function(type, element, content, children, key) {
 
-var props = {}
+  var props = {}
 
-switch (type) {
-  case Elements.heading1: // Heading 1
-    return React.createElement('h1', propsWithUniqueKey(props, key), children)
-    
-  case Elements.heading2: // Heading 2
-    return React.createElement('h2', propsWithUniqueKey(props, key), children)
-    
-  case Elements.heading3: // Heading 3
-    return React.createElement('h3', propsWithUniqueKey(props, key), children)
+  switch (type) {
+    // Add paragraph elements
+    case Elements.paragraph:
+      props = {className: 'blue'};
+      return React.createElement('p', propsWithUniqueKey(props, key), children)
 
-  case Elements.heading4: // Heading 4
-    return React.createElement('h4', propsWithUniqueKey(props, key), children)
-    
-  case Elements.heading5: // Heading 5
-    return React.createElement('h5', propsWithUniqueKey(props, key), children)
-    
-  case Elements.heading6: // Heading 6
-    return React.createElement('h6', propsWithUniqueKey(props, key), children)
-
-  case Elements.preformatted: // Preformatted
-    return React.createElement('pre', propsWithUniqueKey(props, key), children)
-    
-  case Elements.strong: // Strong
-    return React.createElement('strong', propsWithUniqueKey(props, key), children)
-    
-  case Elements.em: // Emphasis
-    return React.createElement('em', propsWithUniqueKey(props, key), children)
-
-  case Elements.listItem: // Unordered List Item
-    return React.createElement('li', propsWithUniqueKey(props, key), children)
-    
-  case Elements.oListItem: // Ordered List Item
-    return React.createElement('li', propsWithUniqueKey(props, key), children)
-
-  case Elements.list: // Unordered List
-    return React.createElement('ul', propsWithUniqueKey(props, key), children)
-    
-  case Elements.oList: // Ordered List
-    return React.createElement('ol', propsWithUniqueKey(props, key), children)
-
-  // Add a class to paragraph elements
-  case Elements.paragraph:
-    return React.createElement('p', propsWithUniqueKey(props, key))
-
-  // Don't wrap images in a <p> tag
-  case Elements.image: 
-    props = { src: element.url , alt: element.alt || '' }
-    return React.createElement('img', propsWithUniqueKey(props, key))
-
-  // Add a class to hyperlinks
-  case Elements.hyperlink:
-    const targetAttr = element.data.target ? { target: element.data.target } : {}
-    const relAttr = element.data.target ? { rel: 'noopener' } : {}
-    props = Object.assign({
-        className: 'link-class',
-        href: element.data.url || linkResolver(element.data)
-    }, targetAttr, relAttr)
-    return React.createElement('a', propsWithUniqueKey(props, key), children)
-
-  // return null to stick with default behaviour
-  default:
-    return null
-}
+    default:
+      return null
+  }
 }
 
 // This function handles Links to each page
@@ -95,7 +41,7 @@ function ArticleDetail() {
 
   return (
     <div>
-      {data.allArticles.edges.map((article) => (
+      {/* {data.allArticles.edges.map((article) => (
         <div key={article.node._meta.id} className='a'>
             <img
               className='article-image'
@@ -108,11 +54,25 @@ function ArticleDetail() {
               <h4>{article.node.published_at.substring(0, 10)}</h4>
             </div>
             <div className='article-content'>
-              <RichText render={article.node.body.find((b) => b.type === 'inline_text')?.primary?.description} /*htmlSerializer={htmlSerializer}*/ /><br />
+              <RichText render={article.node.body.filter(b => b.type === 'inline_text')?.primary?.description} htmlSerializer={htmlSerializer} /><br />
               <Link className='back-btn' to='/'><strong>Go Back ...</strong></Link>
             </div>
         </div>
-      ))}
+      ))} */}
+      <img 
+        className='article-image'
+        src={data.article.feature_image.url}
+        alt={data.article.feature_image.alt}
+        width='30%' 
+      />
+      <div className='article-heading'>
+        <h1>{data.article.title[0].text}</h1>
+        <h4>{data.article.published_at.substring(0, 10)}</h4>
+      </div>
+      <div className='article-content'>
+        <RichText render={data.article.body.filter(b => b.type === 'inline_text')[0].primary?.description} htmlSerializer={htmlSerializer} /><br />
+        <Link className='back-btn' to='/'><strong>Go Back ...</strong></Link>
+      </div>
     </div>
   )
 }

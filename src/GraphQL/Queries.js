@@ -29,30 +29,21 @@ export const GET_POSTS = gql`
 
 export function getDetails(slug) {
   var GET_POST_DETAILS = gql`
-    query getArticle($n: String = "${slug}") {
-      allArticles(uid: $n, lang: "en-us") {
-        edges {
-          node {
-            feature_image
-            _meta {
-              id
-              uid
-            }
-            title
-            body {
-              ... on ArticleBodyInline_text {
-                type
-                label
-                primary {
-                  description
-                }
-              }
-            }
-            published_at
+  query getArticle($n: String = "${slug}") {
+    article(uid: $n, lang: "en-us") {
+      feature_image
+      published_at
+      title
+      body {
+        ... on ArticleBodyInline_text {
+          type
+          primary {
+            description
           }
         }
       }
     }
+  }
   `;
   return GET_POST_DETAILS
 }

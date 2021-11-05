@@ -57,3 +57,7 @@
     box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
     transform: translate3d(0px, -1px, 0px);
 }
+
+.blue {
+    color: blue;
+}
