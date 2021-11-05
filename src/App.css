@@ -1,3 +1,7 @@
+#root {
+    font-family: filson-pro, sans-serif;
+}
+
 .article-tile {
     border: 1px solid rgb(230, 230, 230);
     border-radius: 15px;
