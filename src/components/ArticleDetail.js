@@ -19,7 +19,7 @@ export const htmlSerializer = function(type, element, content, children, key) {
   switch (type) {
     // Add paragraph elements
     case Elements.paragraph:
-      props = {className: 'blue'};
+      // props = {className: 'blue'};
       return React.createElement('p', propsWithUniqueKey(props, key), children)
 
     default:
@@ -39,28 +39,8 @@ function ArticleDetail() {
   if (loading) return <h1>Loading ...</h1>
   if (error) return `${error}`
 
-  console.log(data.article.body.filter(b => b.type === 'inline_text')[0].primary?.description)
-
   return (
-    <div>
-      {/* {data.allArticles.edges.map((article) => (
-        <div key={article.node._meta.id} className='a'>
-            <img
-              className='article-image'
-              src={article.node.feature_image.url}
-              alt={article.node.feature_image.alt}
-              width='30%'
-            />
-            <div className='article-heading'>
-              <h1>{article.node.title[0].text}</h1>
-              <h4>{article.node.published_at.substring(0, 10)}</h4>
-            </div>
-            <div className='article-content'>
-              <RichText render={article.node.body.filter(b => b.type === 'inline_text')?.primary?.description} htmlSerializer={htmlSerializer} /><br />
-              <Link className='back-btn' to='/'><strong>Go Back ...</strong></Link>
-            </div>
-        </div>
-      ))} */}
+    <div>              
       <img 
         className='article-image'
         src={data.article.feature_image.url}
@@ -72,7 +52,9 @@ function ArticleDetail() {
         <h4>{data.article.published_at.substring(0, 10)}</h4>
       </div>
       <div className='article-content'>
-        <RichText render={data.article.body.filter(b => b.type === 'inline_text').primary.description} htmlSerializer={htmlSerializer} /><br />
+        {data.article.body.filter(b => b.type === 'inline_text').map((content, index) => {
+          return <RichText key={index} render={content.primary.description} htmlSerializer={htmlSerializer} />
+        })}<br />
         <Link className='back-btn' to='/'><strong>Go Back ...</strong></Link>
       </div>
     </div>
