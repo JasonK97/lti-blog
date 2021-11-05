@@ -1,17 +1,17 @@
-import "./App.css"
-import ArticlesGrid from "./components/ArticlesGrid"
-import Article from "./components/Article"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import './App.css'
+import ArticlesGrid from './components/ArticlesGrid'
+import ArticleDetail from './components/ArticleDetail'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 function App() {
   return (
     <Router>
       <Switch>
-      <Route exact path="/">
+      <Route exact path='/'>
           <ArticlesGrid />
         </Route>
-        <Route path="/:articleUid">
-          <Article />
+        <Route path='/:articleUid'>
+          <ArticleDetail />
         </Route>
       </Switch>
     </Router>

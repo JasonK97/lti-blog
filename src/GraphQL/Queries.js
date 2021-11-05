@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client'
 
 export const GET_POSTS = gql`
   {
@@ -54,6 +54,5 @@ export function getDetails(slug) {
       }
     }
   `;
-
   return GET_POST_DETAILS
 }

@@ -1,7 +1,7 @@
-import React from "react"
-import { useQuery } from "@apollo/client"
-import { GET_POSTS } from "../GraphQL/Queries"
-import { Link } from "react-router-dom"
+import React from 'react'
+import { useQuery } from '@apollo/client'
+import { GET_POSTS } from '../GraphQL/Queries'
+import { Link } from 'react-router-dom'
 
 function Posts() {
   const { loading, error, data } = useQuery(GET_POSTS)
@@ -12,19 +12,19 @@ function Posts() {
   return (
     <div>
       {data.allArticles.edges.map((article) => (
-        <div key={article.node._meta.id} className="articleTile">
-          <Link className="contReading" to={`/${article.node._meta.uid}`}>
+        <div key={article.node._meta.id} className='article-tile'>
+          <Link className='cont-reading' to={`/${article.node._meta.uid}`}>
             <img
-              className="articleImg"
+              className='grid-image'
               src={article.node.feature_image.url}
               alt={article.node.feature_image.alt}
-              width="100%"
+              width='100%'
             />
-            <div className="textContent">
+            <div className='text-content'>
               <h1>{article.node.title[0].text}</h1>
               <h3>Published : {article.node.published_at.substring(0, 10)}</h3>
               <div>
-                {article.node.body.find((b) => b.type === "inline_text")?.primary?.description?.map(({ text }, index) => {
+                {article.node.body.find((b) => b.type === 'inline_text')?.primary?.description?.map(({ text }, index) => {
                     if (index === 0) {
                       return <p key={index}>{text.substring(0, 190)}...<br /></p>
                     }
