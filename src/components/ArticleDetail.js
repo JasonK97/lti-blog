@@ -39,6 +39,8 @@ function ArticleDetail() {
   if (loading) return <h1>Loading ...</h1>
   if (error) return `${error}`
 
+  console.log(data.article.body.filter(b => b.type === 'inline_text')[0].primary?.description)
+
   return (
     <div>
       {/* {data.allArticles.edges.map((article) => (
@@ -70,7 +72,7 @@ function ArticleDetail() {
         <h4>{data.article.published_at.substring(0, 10)}</h4>
       </div>
       <div className='article-content'>
-        <RichText render={data.article.body.filter(b => b.type === 'inline_text')[0].primary?.description} htmlSerializer={htmlSerializer} /><br />
+        <RichText render={data.article.body.filter(b => b.type === 'inline_text').primary.description} htmlSerializer={htmlSerializer} /><br />
         <Link className='back-btn' to='/'><strong>Go Back ...</strong></Link>
       </div>
     </div>
