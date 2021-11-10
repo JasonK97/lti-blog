@@ -2,7 +2,7 @@
     font-family: filson-pro, sans-serif;
 }
 
-.article-tile {
+/* .article-tile {
     border: 1px solid rgb(230, 230, 230);
     border-radius: 15px;
     text-align: center;
@@ -14,7 +14,7 @@
 .article-tile:hover {
     box-shadow: 10px 10px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     transform: translate3d(0px, -1px, 0px);
-}
+} */
 
 .grid-image {
     border-top-left-radius: 15px;
@@ -39,15 +39,15 @@
     border-radius: 10px;
 }
 
-.article-heading {
+/* .article-heading {
     text-align: center;
-}
+} */
 
-.article-content {
+/* .article-content {
     padding: 0% 30% 3% 30%;
-}
+} */
 
-.back-btn {
+/* .back-btn {
     background-color:rgb(230, 230, 230);
     border-radius: 5px;
     text-decoration: none;
@@ -60,8 +60,4 @@
     background-color:rgb(189, 189, 189);
     box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
     transform: translate3d(0px, -1px, 0px);
-}
-
-.blue {
-    color: blue;
-}
+} */
