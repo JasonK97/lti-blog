@@ -42,8 +42,17 @@ export const htmlSerializer = function(type, element, content, children, key) {
   switch (type) {
     // Add paragraph elements
     case Elements.paragraph:
-      // props = {className: 'blue'};
       return React.createElement('p', propsWithUniqueKey(props, key), children)
+    
+    // Add a class to hyperlinks
+    case Elements.hyperlink:
+      const targetAttr = element.data.target ? { target: element.data.target } : {}
+      const relAttr = element.data.target ? { rel: 'noopener' } : {}
+      props = Object.assign({
+          className: 'link-class',
+          href: element.data.url || linkResolver(element.data)
+      }, targetAttr, relAttr)
+      return React.createElement('a', propsWithUniqueKey(props, key), children)
 
     default:
       return null
