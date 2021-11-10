@@ -4,6 +4,7 @@ import { GET_POSTS } from '../GraphQL/Queries'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
+const TextContent = styled.div`padding: 0px 15px 15px 15px;`
 const ArticleTile = styled.div`
   border: 1px solid rgb(230, 230, 230);
   border-radius: 15px;
@@ -17,6 +18,15 @@ const ArticleTile = styled.div`
   }
 `
 
+const ContReading = {
+  textDecoration: 'none',
+  color: 'black'
+}
+const GridImage = {
+  borderTopLeftRadius: '15px',
+  borderTopRightRadius: '15px'
+}
+
 function Posts() {
   const { loading, error, data } = useQuery(GET_POSTS)
 
@@ -27,14 +37,14 @@ function Posts() {
     <div>
       {data.allArticles.edges.map((article) => (
         <ArticleTile key={article.node._meta.id}>
-          <Link className='cont-reading' to={`/${article.node._meta.uid}`}>
+          <Link style={ContReading} to={`/${article.node._meta.uid}`}>
             <img
-              className='grid-image'
+              style={GridImage}
               src={article.node.feature_image.url}
               alt={article.node.feature_image.alt}
               width='100%'
             />
-            <div className="text-content">
+            <TextContent>
               <h1>{article.node.title[0].text}</h1>
               <h3>Published : {article.node.published_at.substring(0, 10)}</h3>
               <div>
@@ -45,7 +55,7 @@ function Posts() {
                     return ''
                   })}
               </div>
-            </div>
+            </TextContent>
           </Link>
         </ArticleTile>
       ))}

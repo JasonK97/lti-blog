@@ -8,6 +8,13 @@ import styled from 'styled-components'
 
 const ArticleHeading = styled.div`text-align: center;`
 const ArticleContent = styled.div`padding: 0% 30% 3% 30%;`
+const HyperlinkStyle = styled.a`
+  color: rgb(183, 26, 4);
+  &:hover {
+    color: rgb(100, 100, 100);
+    text-decoration: none;
+  }
+`
 const BackButton = styled.button`
   background-color:rgb(230, 230, 230);
   border-radius: 5px;
@@ -26,6 +33,14 @@ const linkStyle = {
   color: 'black',
   fontFamily: 'filson-pro',
   fontWeight: '600'
+}
+const articleImage = {
+  display: 'block',
+  marginTop: '20px',
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  width: '50%',
+  borderRadius: '10px'
 }
 
 // Function to add a unique key to props
@@ -49,10 +64,9 @@ export const htmlSerializer = function(type, element, content, children, key) {
       const targetAttr = element.data.target ? { target: element.data.target } : {}
       const relAttr = element.data.target ? { rel: 'noopener' } : {}
       props = Object.assign({
-          className: 'link-class',
           href: element.data.url || linkResolver(element.data)
       }, targetAttr, relAttr)
-      return React.createElement('a', propsWithUniqueKey(props, key), children)
+      return React.createElement(HyperlinkStyle, propsWithUniqueKey(props, key), children)
 
     default:
       return null
@@ -74,7 +88,7 @@ function ArticleDetail() {
   return (
     <div>              
       <img 
-        className='article-image'
+        style={articleImage}
         src={data.article.feature_image.url}
         alt={data.article.feature_image.alt}
         width='30%' 
