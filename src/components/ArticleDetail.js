@@ -4,28 +4,40 @@ import { useQuery } from '@apollo/client'
 import { getDetails } from '../GraphQL/Queries'
 import { RichText, Elements } from 'prismic-reactjs'
 import { Link, useParams } from 'react-router-dom'
+import { Messaging } from 'react-cssfx-loading/lib'
 import styled from 'styled-components'
 
 const ArticleHeading = styled.div`text-align: center;`
-const ArticleContent = styled.div`padding: 0% 30% 3% 30%;`
+const ArticleContent = styled.div`
+  padding: 0 30% 3% 30%;
+  @media (max-width: 1000px) {
+    padding: 0 10% 3% 10%;
+  }
+`
 const HyperlinkStyle = styled.a`
   color: rgb(183, 26, 4);
+  text-decoration: none;
   &:hover {
-    color: rgb(100, 100, 100);
-    text-decoration: none;
+    color: rgb(50, 50, 50);
   }
 `
 const BackButton = styled.button`
-  background-color:rgb(230, 230, 230);
-  border-radius: 5px;
+  background-color: rgb(230, 230, 230);
+  border-radius: 3px;
   border: none;
   padding: 5px;
   transition: all 0.1s ease-in-out;
   &:hover {
-    background-color:rgb(189, 189, 189);
+    background-color: rgb(189, 189, 189);
     box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
     transform: translate3d(0px, -1px, 0px);
   }
+`
+const LoadingAnim = styled.h3`
+  margin-top: 50%;
+  margin-bottom: 50%;
+  display: flex;
+  justify-content: center;
 `
 
 const linkStyle = {
@@ -40,7 +52,7 @@ const articleImage = {
   marginLeft: 'auto',
   marginRight: 'auto',
   width: '50%',
-  borderRadius: '10px'
+  borderRadius: '5px'
 }
 
 // Function to add a unique key to props
@@ -82,7 +94,7 @@ function ArticleDetail() {
   const { articleUid } = useParams()
   const { loading, error, data } = useQuery(getDetails(articleUid))
 
-  if (loading) return <h1>Loading ...</h1>
+  if (loading) return <LoadingAnim><Messaging color='#000000' /></LoadingAnim>
   if (error) return `${error}`
 
   return (

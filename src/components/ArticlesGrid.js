@@ -2,6 +2,7 @@ import React from 'react'
 import { useQuery } from '@apollo/client'
 import { GET_POSTS } from '../GraphQL/Queries'
 import { Link } from 'react-router-dom'
+import { Messaging } from 'react-cssfx-loading/lib'
 import styled from 'styled-components'
 
 const TextContent = styled.div`padding: 0px 15px 15px 15px;`
@@ -16,6 +17,15 @@ const ArticleTile = styled.div`
     box-shadow: 10px 10px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     transform: translate3d(0px, -1px, 0px);
   }
+  @media (max-width: 1000px) {
+    margin: 20px 10% 15px 10%;
+  }
+`
+const LoadingAnim = styled.h3`
+  margin-top: 50%;
+  margin-bottom: 50%;
+  display: flex;
+  justify-content: center;
 `
 
 const ContReading = {
@@ -30,7 +40,7 @@ const GridImage = {
 function Posts() {
   const { loading, error, data } = useQuery(GET_POSTS)
 
-  if (loading) return <h1>Loading ...</h1>
+  if (loading) return <LoadingAnim><Messaging color='#000000' /></LoadingAnim>
   if (error) return `${error}`
 
   return (
