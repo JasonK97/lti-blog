@@ -5,7 +5,12 @@ import { Link } from 'react-router-dom'
 import { Messaging } from 'react-cssfx-loading/lib'
 import styled from 'styled-components'
 
-const TextContent = styled.div`padding: 0px 15px 15px 15px;`
+const TextContent = styled.div`
+  padding: 0px 40px 15px 40px;
+  @media (max-width: 1000px) {
+    padding: 0 15px 15px 15px;
+  }
+`
 const ArticleTile = styled.div`
   border: 1px solid #E6E6E6;
   border-radius: 10px;
@@ -18,7 +23,7 @@ const ArticleTile = styled.div`
     transform: translate3d(0px, -1px, 0px);
   }
   @media (max-width: 1000px) {
-    margin: 20px 10% 15px 10%;
+    margin: 20px 5% 15px 5%;
   }
 `
 const LoadingAnim = styled.h3`

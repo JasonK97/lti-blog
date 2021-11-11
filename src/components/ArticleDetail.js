@@ -9,7 +9,7 @@ import styled from 'styled-components'
 
 const ArticleHeading = styled.div`text-align: center;`
 const ArticleContent = styled.div`
-  padding: 0 30% 3% 30%;
+  padding: 0 25% 3% 25%;
   @media (max-width: 1000px) {
     padding: 0 10% 3% 10%;
   }
