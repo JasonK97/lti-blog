@@ -7,8 +7,8 @@ import styled from 'styled-components'
 
 const TextContent = styled.div`padding: 0px 15px 15px 15px;`
 const ArticleTile = styled.div`
-  border: 1px solid rgb(230, 230, 230);
-  border-radius: 15px;
+  border: 1px solid #E6E6E6;
+  border-radius: 10px;
   text-align: center;
   padding: 0px 0px 15px 0px;
   margin: 20px 30% 15px 30%;
@@ -33,8 +33,8 @@ const ContReading = {
   color: 'black'
 }
 const GridImage = {
-  borderTopLeftRadius: '15px',
-  borderTopRightRadius: '15px'
+  borderTopLeftRadius: '10px',
+  borderTopRightRadius: '10px'
 }
 
 function Posts() {

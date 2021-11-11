@@ -15,22 +15,10 @@ const ArticleContent = styled.div`
   }
 `
 const HyperlinkStyle = styled.a`
-  color: rgb(183, 26, 4);
+  color: #B71A04;
   text-decoration: none;
   &:hover {
-    color: rgb(50, 50, 50);
-  }
-`
-const BackButton = styled.button`
-  background-color: rgb(230, 230, 230);
-  border-radius: 3px;
-  border: none;
-  padding: 5px;
-  transition: all 0.1s ease-in-out;
-  &:hover {
-    background-color: rgb(189, 189, 189);
-    box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
-    transform: translate3d(0px, -1px, 0px);
+    color: #323232;
   }
 `
 const LoadingAnim = styled.h3`
@@ -39,13 +27,23 @@ const LoadingAnim = styled.h3`
   display: flex;
   justify-content: center;
 `
+const BackButton = styled(Link)`
+  background-color: #E6E6E6;
+  color: #000000;
+  border-radius: 3px;
+  border: none;
+  padding: 5px;
+  transition: all 0.1s ease-in-out;
+  text-decoration: none;
+  font-family: filson-pro;
+  font-weight: 600;
+  &:hover {
+    background-color: #BDBDBD;
+    box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
+    transform: translate3d(0px, -1px, 0px);
+  }
+`
 
-const linkStyle = {
-  textDecoration: 'none',
-  color: 'black',
-  fontFamily: 'filson-pro',
-  fontWeight: '600'
-}
 const articleImage = {
   display: 'block',
   marginTop: '20px',
@@ -113,7 +111,7 @@ function ArticleDetail() {
         {data.article.body.filter(b => b.type === 'inline_text').map((content, index) => {
           return <RichText key={index} render={content.primary.description} htmlSerializer={htmlSerializer} />
         })}<br />
-        <BackButton><Link style={linkStyle} to='/'>Go Back ...</Link></BackButton>
+        <BackButton to='/'>Go Back ...</BackButton>
       </ArticleContent>
     </div>
   )
