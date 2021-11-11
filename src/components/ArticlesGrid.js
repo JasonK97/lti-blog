@@ -27,15 +27,14 @@ const LoadingAnim = styled.h3`
   display: flex;
   justify-content: center;
 `
-
-const ContReading = {
-  textDecoration: 'none',
-  color: 'black'
-}
-const GridImage = {
-  borderTopLeftRadius: '10px',
-  borderTopRightRadius: '10px'
-}
+const ContReading = styled(Link)`
+  text-decoration: none;
+  color: #000000
+`
+const GridImage = styled.img`
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+`
 
 function Posts() {
   const { loading, error, data } = useQuery(GET_POSTS)
@@ -47,9 +46,8 @@ function Posts() {
     <div>
       {data.allArticles.edges.map((article) => (
         <ArticleTile key={article.node._meta.id}>
-          <Link style={ContReading} to={`/${article.node._meta.uid}`}>
-            <img
-              style={GridImage}
+          <ContReading to={`/${article.node._meta.uid}`}>
+            <GridImage
               src={article.node.feature_image.url}
               alt={article.node.feature_image.alt}
               width='100%'
@@ -66,7 +64,7 @@ function Posts() {
                   })}
               </div>
             </TextContent>
-          </Link>
+          </ContReading>
         </ArticleTile>
       ))}
     </div>

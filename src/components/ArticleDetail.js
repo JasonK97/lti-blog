@@ -43,15 +43,17 @@ const BackButton = styled(Link)`
     transform: translate3d(0px, -1px, 0px);
   }
 `
-
-const articleImage = {
-  display: 'block',
-  marginTop: '20px',
-  marginLeft: 'auto',
-  marginRight: 'auto',
-  width: '50%',
-  borderRadius: '5px'
-}
+const ArticleImage = styled.img`
+  display: block;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  border-radius: 5px;
+  @media (max-width: 1000px) {
+    width: 75%;
+  }
+`
 
 // Function to add a unique key to props
 const propsWithUniqueKey = function(props, key) {
@@ -97,8 +99,7 @@ function ArticleDetail() {
 
   return (
     <div>              
-      <img 
-        style={articleImage}
+      <ArticleImage
         src={data.article.feature_image.url}
         alt={data.article.feature_image.alt}
         width='30%' 
