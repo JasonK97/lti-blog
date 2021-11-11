@@ -94,7 +94,7 @@ function ArticleDetail() {
   const { articleUid } = useParams()
   const { loading, error, data } = useQuery(getDetails(articleUid))
 
-  if (loading) return <LoadingAnim><Messaging color='#000000' /></LoadingAnim>
+  if (loading) return <LoadingAnim><Messaging color='#000000'/></LoadingAnim>
   if (error) return `${error}`
 
   return (
