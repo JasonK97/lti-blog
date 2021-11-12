@@ -37,7 +37,7 @@ const ContReading = styled(Link)`
   transition: all 0.2s ease-in-out;
 
   ${ArticleTile}:hover & {
-    color: ${props => props.theme.colors.mediumDarkGrey};
+    color: ${props => props.theme.colors.ltiBlue};
 
   }
 `

@@ -16,7 +16,7 @@ const ArticleContent = styled.div`
   }
 `
 const HyperlinkStyle = styled.a`
-  color: ${props => props.theme.colors.red};
+  color: ${props => props.theme.colors.ltiRed};
   text-decoration: none;
 
   &:hover {
