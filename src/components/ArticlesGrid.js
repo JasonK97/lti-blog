@@ -3,27 +3,42 @@ import { useQuery } from '@apollo/client'
 import { GET_POSTS } from '../GraphQL/Queries'
 import { Link } from 'react-router-dom'
 import { Messaging } from 'react-cssfx-loading/lib'
-import styled from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
+import { theme } from '../theme'
 
 const TextContent = styled.div`
   padding: 0px 40px 15px 40px;
+
   @media (max-width: 1000px) {
     padding: 0 15px 15px 15px;
   }
 `
 const ArticleTile = styled.div`
-  border: 1px solid #E6E6E6;
+  border: 1px solid ${props => props.theme.colors.lightGrey};
   border-radius: 10px;
   text-align: center;
   padding: 0px 0px 15px 0px;
   margin: 20px 30% 15px 30%;
   transition: all 0.2s ease-in-out;
+
   &:hover {
-    box-shadow: 10px 10px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: ${props => props.theme.shadows[1]};
     transform: translate3d(0px, -1px, 0px);
+    border: 1px solid ${props => props.theme.colors.darkGrey};
   }
+
   @media (max-width: 1000px) {
     margin: 20px 5% 15px 5%;
+  }
+`
+const ContReading = styled(Link)`
+  text-decoration: none;
+  color: ${props => props.theme.colors.black};
+  transition: all 0.2s ease-in-out;
+
+  ${ArticleTile}:hover & {
+    color: ${props => props.theme.colors.mediumDarkGrey};
+
   }
 `
 const LoadingAnim = styled.h3`
@@ -31,10 +46,6 @@ const LoadingAnim = styled.h3`
   margin-bottom: 50%;
   display: flex;
   justify-content: center;
-`
-const ContReading = styled(Link)`
-  text-decoration: none;
-  color: #000000
 `
 const GridImage = styled.img`
   border-top-left-radius: 10px;
@@ -48,7 +59,7 @@ function Posts() {
   if (error) return `${error}`
 
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       {data.allArticles.edges.map((article) => (
         <ArticleTile key={article.node._meta.id}>
           <ContReading to={`/${article.node._meta.uid}`}>
@@ -72,7 +83,7 @@ function Posts() {
           </ContReading>
         </ArticleTile>
       ))}
-    </div>
+    </ThemeProvider>
   )
 }
 

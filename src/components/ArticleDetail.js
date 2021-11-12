@@ -1,24 +1,26 @@
 import React from 'react'
-import '../App.css'
 import { useQuery } from '@apollo/client'
 import { getDetails } from '../GraphQL/Queries'
 import { RichText, Elements } from 'prismic-reactjs'
 import { Link, useParams } from 'react-router-dom'
 import { Messaging } from 'react-cssfx-loading/lib'
-import styled from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
+import { theme } from '../theme'
 
 const ArticleHeading = styled.div`text-align: center;`
 const ArticleContent = styled.div`
   padding: 0 25% 3% 25%;
+
   @media (max-width: 1000px) {
     padding: 0 10% 3% 10%;
   }
 `
 const HyperlinkStyle = styled.a`
-  color: #B71A04;
+  color: ${props => props.theme.colors.red};
   text-decoration: none;
+
   &:hover {
-    color: #323232;
+    color: ${props => props.theme.colors.darkGrey};
   }
 `
 const LoadingAnim = styled.h3`
@@ -28,8 +30,8 @@ const LoadingAnim = styled.h3`
   justify-content: center;
 `
 const BackButton = styled(Link)`
-  background-color: #E6E6E6;
-  color: #000000;
+  background-color: ${props => props.theme.colors.lightGrey};
+  color: ${props => props.theme.colors.black};
   border-radius: 3px;
   border: none;
   padding: 5px;
@@ -37,9 +39,10 @@ const BackButton = styled(Link)`
   text-decoration: none;
   font-family: filson-pro;
   font-weight: 600;
+
   &:hover {
-    background-color: #BDBDBD;
-    box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
+    background-color: ${props => props.theme.colors.mediumGrey};
+    box-shadow: ${props => props.theme.shadows[0]};
     transform: translate3d(0px, -1px, 0px);
   }
 `
@@ -50,6 +53,7 @@ const ArticleImage = styled.img`
   margin-right: auto;
   width: 50%;
   border-radius: 5px;
+  
   @media (max-width: 1000px) {
     width: 75%;
   }
@@ -98,7 +102,7 @@ function ArticleDetail() {
   if (error) return `${error}`
 
   return (
-    <div>              
+    <ThemeProvider theme={theme}>
       <ArticleImage
         src={data.article.feature_image.url}
         alt={data.article.feature_image.alt}
@@ -114,7 +118,7 @@ function ArticleDetail() {
         })}<br />
         <BackButton to='/'>Go Back ...</BackButton>
       </ArticleContent>
-    </div>
+    </ThemeProvider>
   )
 }
 

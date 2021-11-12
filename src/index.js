@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
 import App from './App'
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client'
 import { PrismicLink } from 'apollo-link-prismic'
+import GlobalStyle from './globalStyles'
 
 const client = new ApolloClient({
   link: PrismicLink({
@@ -16,6 +16,7 @@ const client = new ApolloClient({
 const rootElement = document.getElementById('root')
 ReactDOM.render(
   <ApolloProvider client={client}>
+    <GlobalStyle />
     <App />
   </ApolloProvider>,
   rootElement
