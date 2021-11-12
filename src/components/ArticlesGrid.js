@@ -48,8 +48,8 @@ const LoadingAnim = styled.h3`
   justify-content: center;
 `
 const GridImage = styled.img`
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 `
 
 function Posts() {
