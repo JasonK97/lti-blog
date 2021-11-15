@@ -4,6 +4,12 @@ import { GET_POSTS } from '../GraphQL/Queries'
 import { Link } from 'react-router-dom'
 import { Messaging } from 'react-cssfx-loading/lib'
 import styled from 'styled-components'
+import { color, shadow } from 'styled-system'
+
+const Box = styled.div`
+  ${color}
+  ${shadow}
+`
 
 const TextContent = styled.div`
   padding: 0px 40px 15px 40px;
@@ -21,7 +27,7 @@ const ArticleTile = styled.div`
   transition: all 0.2s ease-in-out;
 
   &:hover {
-    box-shadow: ${props => props.theme.shadows[1]};
+    box-shadow: ${props => props.theme.shadows.boxShadowGrid};
     transform: translate3d(0px, -1px, 0px);
     border: 1px solid ${props => props.theme.colors.darkGrey};
   }
@@ -70,14 +76,17 @@ function Posts() {
             <TextContent>
               <h1>{article.node.title[0].text}</h1>
               <h3>Published : {article.node.published_at.substring(0, 10)}</h3>
-              <div>
+              {/* <Box color='ltiRed' bg='ltiBlue' boxShadow='10px 10px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'>
+                Test Box
+              </Box> */}
+              <Box>
                 {article.node.body.find((b) => b.type === 'inline_text')?.primary?.description?.map(({ text }, index) => {
                     if (index === 0) {
                       return <p key={index}>{text.substring(0, 190)}...<br /></p>
                     }
                     return ''
                   })}
-              </div>
+              </Box>
             </TextContent>
           </ContReading>
         </ArticleTile>

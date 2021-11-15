@@ -23,6 +23,7 @@
     "react-scripts": "4.0.3",
     "set-value": "^4.1.0",
     "styled-components": "^5.3.3",
+    "styled-system": "^5.1.5",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
