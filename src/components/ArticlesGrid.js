@@ -3,8 +3,7 @@ import { useQuery } from '@apollo/client'
 import { GET_POSTS } from '../GraphQL/Queries'
 import { Link } from 'react-router-dom'
 import { Messaging } from 'react-cssfx-loading/lib'
-import styled, { ThemeProvider } from 'styled-components'
-import { theme } from '../theme'
+import styled from 'styled-components'
 
 const TextContent = styled.div`
   padding: 0px 40px 15px 40px;
@@ -59,7 +58,7 @@ function Posts() {
   if (error) return `${error}`
 
   return (
-    <ThemeProvider theme={theme}>
+    <div>
       {data.allArticles.edges.map((article) => (
         <ArticleTile key={article.node._meta.id}>
           <ContReading to={`/${article.node._meta.uid}`}>
@@ -83,7 +82,7 @@ function Posts() {
           </ContReading>
         </ArticleTile>
       ))}
-    </ThemeProvider>
+    </div>
   )
 }
 

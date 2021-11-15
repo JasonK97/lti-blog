@@ -4,6 +4,8 @@ import App from './App'
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client'
 import { PrismicLink } from 'apollo-link-prismic'
 import GlobalStyle from './globalStyles'
+import { ThemeProvider } from 'styled-components'
+import { theme } from './theme'
 
 const client = new ApolloClient({
   link: PrismicLink({
@@ -16,8 +18,10 @@ const client = new ApolloClient({
 const rootElement = document.getElementById('root')
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <GlobalStyle />
-    <App />
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <App />
+    </ThemeProvider>
   </ApolloProvider>,
   rootElement
 )

@@ -4,8 +4,7 @@ import { getDetails } from '../GraphQL/Queries'
 import { RichText, Elements } from 'prismic-reactjs'
 import { Link, useParams } from 'react-router-dom'
 import { Messaging } from 'react-cssfx-loading/lib'
-import styled, { ThemeProvider } from 'styled-components'
-import { theme } from '../theme'
+import styled from 'styled-components'
 
 const ArticleHeading = styled.div`text-align: center;`
 const ArticleContent = styled.div`
@@ -102,7 +101,7 @@ function ArticleDetail() {
   if (error) return `${error}`
 
   return (
-    <ThemeProvider theme={theme}>
+    <div>
       <ArticleImage
         src={data.article.feature_image.url}
         alt={data.article.feature_image.alt}
@@ -118,7 +117,7 @@ function ArticleDetail() {
         })}<br />
         <BackButton to='/'>Go Back ...</BackButton>
       </ArticleContent>
-    </ThemeProvider>
+    </div>
   )
 }
 
