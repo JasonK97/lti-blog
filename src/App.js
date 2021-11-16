@@ -1,5 +1,5 @@
-import ArticlesGrid from './components/ArticlesGrid'
-import ArticleDetail from './components/ArticleDetail'
+import ArticlesGrid from './pages/ArticlesGrid'
+import ArticleDetail from './pages/ArticleDetail'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 function App() {

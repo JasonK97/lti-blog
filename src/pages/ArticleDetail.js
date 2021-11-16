@@ -5,6 +5,7 @@ import { RichText, Elements } from 'prismic-reactjs'
 import { Link, useParams } from 'react-router-dom'
 import { Messaging } from 'react-cssfx-loading/lib'
 import styled from 'styled-components'
+import { color, shadow } from 'styled-system'
 
 const ArticleHeading = styled.div`text-align: center;`
 const ArticleContent = styled.div`
@@ -15,11 +16,11 @@ const ArticleContent = styled.div`
   }
 `
 const HyperlinkStyle = styled.a`
-  color: ${props => props.theme.colors.ltiRed};
+  ${color}
   text-decoration: none;
 
   &:hover {
-    color: ${props => props.theme.colors.darkGrey};
+    color: ${props => props.theme.colors.grey[0]};
   }
 `
 const LoadingAnim = styled.h3`
@@ -29,8 +30,7 @@ const LoadingAnim = styled.h3`
   justify-content: center;
 `
 const BackButton = styled(Link)`
-  background-color: ${props => props.theme.colors.lightGrey};
-  color: ${props => props.theme.colors.black};
+  ${color}
   border-radius: 3px;
   border: none;
   padding: 5px;
@@ -40,8 +40,8 @@ const BackButton = styled(Link)`
   font-weight: 600;
 
   &:hover {
-    background-color: ${props => props.theme.colors.mediumGrey};
-    box-shadow: ${props => props.theme.shadows[0]};
+    background-color: ${props => props.theme.colors.grey[2]};
+    ${shadow}
     transform: translate3d(0px, -1px, 0px);
   }
 `
@@ -79,6 +79,7 @@ export const htmlSerializer = function(type, element, content, children, key) {
       const targetAttr = element.data.target ? { target: element.data.target } : {}
       const relAttr = element.data.target ? { rel: 'noopener' } : {}
       props = Object.assign({
+          color: 'red',
           href: element.data.url || linkResolver(element.data)
       }, targetAttr, relAttr)
       return React.createElement(HyperlinkStyle, propsWithUniqueKey(props, key), children)
@@ -97,7 +98,7 @@ function ArticleDetail() {
   const { articleUid } = useParams()
   const { loading, error, data } = useQuery(getDetails(articleUid))
 
-  if (loading) return <LoadingAnim><Messaging color='#000000'/></LoadingAnim>
+  if (loading) return <LoadingAnim><Messaging color='black'/></LoadingAnim>
   if (error) return `${error}`
 
   return (
@@ -115,7 +116,14 @@ function ArticleDetail() {
         {data.article.body.filter(b => b.type === 'inline_text').map((content, index) => {
           return <RichText key={index} render={content.primary.description} htmlSerializer={htmlSerializer} />
         })}<br />
-        <BackButton to='/'>Go Back ...</BackButton>
+        <BackButton 
+          to='/' 
+          color='black' 
+          bg='grey.3' 
+          boxShadow={[0]}
+        >
+          Go Back ...
+        </BackButton>
       </ArticleContent>
     </div>
   )

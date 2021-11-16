@@ -4,22 +4,26 @@ import { GET_POSTS } from '../GraphQL/Queries'
 import { Link } from 'react-router-dom'
 import { Messaging } from 'react-cssfx-loading/lib'
 import styled from 'styled-components'
-import { color, shadow } from 'styled-system'
+import { color, shadow, border } from 'styled-system'
 
-const Box = styled.div`
-  ${color}
-  ${shadow}
-`
+// const Box = styled.div`
+//   ${color}
+//   ${shadow}
+//   padding: 15px;
+// `
 
 const TextContent = styled.div`
   padding: 0px 40px 15px 40px;
 
-  @media (max-width: 1000px) {
+  @media (max-width: 1024px) {
     padding: 0 15px 15px 15px;
+    h1 {
+      font-size: 24px;
+    }
   }
 `
 const ArticleTile = styled.div`
-  border: 1px solid ${props => props.theme.colors.lightGrey};
+  ${border}
   border-radius: 10px;
   text-align: center;
   padding: 0px 0px 15px 0px;
@@ -27,26 +31,27 @@ const ArticleTile = styled.div`
   transition: all 0.2s ease-in-out;
 
   &:hover {
-    box-shadow: ${props => props.theme.shadows.boxShadowGrid};
+    ${shadow}
     transform: translate3d(0px, -1px, 0px);
-    border: 1px solid ${props => props.theme.colors.darkGrey};
+    
   }
 
-  @media (max-width: 1000px) {
+  @media (max-width: 1024px) {
     margin: 20px 5% 15px 5%;
   }
 `
 const ContReading = styled(Link)`
   text-decoration: none;
-  color: ${props => props.theme.colors.black};
+  ${color}
   transition: all 0.2s ease-in-out;
 
   ${ArticleTile}:hover & {
-    color: ${props => props.theme.colors.ltiBlue};
+    color: ${props => props.theme.colors.blue};
 
   }
 `
 const LoadingAnim = styled.h3`
+  ${color}
   margin-top: 50%;
   margin-bottom: 50%;
   display: flex;
@@ -60,14 +65,14 @@ const GridImage = styled.img`
 function Posts() {
   const { loading, error, data } = useQuery(GET_POSTS)
 
-  if (loading) return <LoadingAnim><Messaging color='#000000' /></LoadingAnim>
+  if (loading) return <LoadingAnim><Messaging color='black' /></LoadingAnim>
   if (error) return `${error}`
 
   return (
     <div>
       {data.allArticles.edges.map((article) => (
-        <ArticleTile key={article.node._meta.id}>
-          <ContReading to={`/${article.node._meta.uid}`}>
+        <ArticleTile key={article.node._meta.id} boxShadow={[1]} borderWidth={[1]} borderColor='grey.3'>
+          <ContReading to={`/${article.node._meta.uid}`} color='black'>
             <GridImage
               src={article.node.feature_image.url}
               alt={article.node.feature_image.alt}
@@ -76,17 +81,17 @@ function Posts() {
             <TextContent>
               <h1>{article.node.title[0].text}</h1>
               <h3>Published : {article.node.published_at.substring(0, 10)}</h3>
-              {/* <Box color='ltiRed' bg='ltiBlue' boxShadow='10px 10px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'>
+              {/* <Box color='red' bg='grey.2' boxShadow={[1]}>
                 Test Box
               </Box> */}
-              <Box>
+              <div>
                 {article.node.body.find((b) => b.type === 'inline_text')?.primary?.description?.map(({ text }, index) => {
                     if (index === 0) {
                       return <p key={index}>{text.substring(0, 190)}...<br /></p>
                     }
                     return ''
                   })}
-              </Box>
+              </div>
             </TextContent>
           </ContReading>
         </ArticleTile>

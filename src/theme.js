@@ -1,27 +1,26 @@
+// const colors = {
+//   ltiRed: '#B71A05',
+//   darkGrey: '#323232',
+//   mediumDarkGrey: '#595959',
+//   mediumGrey: '#BDBDBD',
+//   lightGrey: '#E6E6E6',
+//   black: '#000000',
+//   ltiBlue: '#0A415C'
+// }
 
-const colors = {
-  ltiRed: '#B71A05',
-  darkGrey: '#323232',
-  mediumDarkGrey: '#595959',
-  mediumGrey: '#BDBDBD',
-  lightGrey: '#E6E6E6',
-  black: '#000000',
-  ltiBlue: '#0A415C'
-}
+// const shadows = [
+//   '3px 3px 10px 0 rgba(0, 0, 0, 0.2)', 
+//   '10px 10px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
+// ]
 
-const shadows = [
-  '3px 3px 10px 0 rgba(0, 0, 0, 0.2)', 
-  '10px 10px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
-]
+// // shadow aliases
+// shadows.boxShadowBtn = shadows[0]
+// shadows.boxShadowGrid = shadows[1]
 
-// shadow aliases
-shadows.boxShadowBtn = shadows[0]
-shadows.boxShadowGrid = shadows[1]
-
-export const theme = { 
-  colors,
-  shadows
-}
+// export const theme = { 
+//   colors,
+//   shadows
+// }
 
 ///////////////////////////////////////////////////////////////////////////////////
 // I kinda like this way better because I get to name the props, but if the array
@@ -31,3 +30,35 @@ export const theme = {
 //   boxShadowBtn: '3px 3px 10px 0 rgba(0, 0, 0, 0.2)',
 //   boxShadowGrid: '10px 10px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
 // }
+
+const black = '#000000'
+const red = '#B71A05'
+const blue = '#0A415C'
+
+export const theme = {
+  breakpoints: ['1024px'],
+  colors: {
+    grey: [
+      '#323232',
+      '#595959',
+      '#BDBDBD',
+      '#E6E6E6'
+    ],
+    red,
+    blue,
+    black
+  },
+  shadows: [
+    '3px 3px 10px 0 rgba(0, 0, 0, 0.2)',
+    '10px 10px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
+  ],
+  borderWidth: ['1px'],
+  fontSizes: ['12px', '16px', '24px', '36px'],
+  fonts: {
+    sansSerif: 'filson-pro'
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////////
+// Would it be better to do it this way, or the way in the comments above?
+//////////////////////////////////////////////////////////////////////////////////
