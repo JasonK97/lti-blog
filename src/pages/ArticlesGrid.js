@@ -4,30 +4,24 @@ import { GET_POSTS } from '../GraphQL/Queries'
 import { Link } from 'react-router-dom'
 import { Messaging } from 'react-cssfx-loading/lib'
 import styled from 'styled-components'
-import { compose, color, shadow, border, space } from 'styled-system'
+import { compose, color, shadow, border, space, typography } from 'styled-system'
 
 const TextContent = styled.div`
   ${space}
 
   @media (max-width: 1024px) {
-    padding: 0 15px 15px 15px;
     h1 {
       font-size: 24px;
     }
   }
 `
 const ArticleTile = styled.div`
-  ${compose(border, space)}
-  text-align: center;
+  ${compose(border, space, typography)}
   transition: all 0.2s ease-in-out;
 
   &:hover {
     ${shadow}
     transform: translate3d(0px, -1px, 0px);
-  }
-
-  @media (max-width: 1024px) {
-    margin: 20px 5% 15px 5%;
   }
 `
 const ContReading = styled(Link)`
@@ -61,15 +55,16 @@ function Posts() {
         // grey.3 dot notation picks up nested value.
         // 'theme.colors.grey[3]'
         <ArticleTile 
-          key={article.node._meta.id} 
+          key={article.node._meta.id}
+          textAlign='center'
           boxShadow={[1]} 
           border={[0]} 
           borderColor='grey.3' 
           borderRadius={[4]}
-          mt={[4]}
-          mr={[12]}
-          mb={[3]}
-          ml={[12]}
+          mt={[4, 4]}
+          mr={[12, 9]}
+          mb={[3, 3]}
+          ml={[12, 9]}
           pb={[3]}
         >
           <ContReading to={`/${article.node._meta.uid}`} color='black'>
@@ -81,9 +76,9 @@ function Posts() {
               width='100%'
             />
             <TextContent 
-              pr={[8]} 
-              pb={[3]} 
-              pl={[8]}
+              pr={[8, 3]} 
+              pb={[3, 3]} 
+              pl={[8, 3]}
             >
               <h1>{article.node.title[0].text}</h1>
               <h3>Published : {article.node.published_at.substring(0, 10)}</h3>
