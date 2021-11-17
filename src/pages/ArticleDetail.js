@@ -5,13 +5,13 @@ import { RichText, Elements } from 'prismic-reactjs'
 import { Link, useParams } from 'react-router-dom'
 import { Messaging } from 'react-cssfx-loading/lib'
 import styled from 'styled-components'
-import { color, shadow } from 'styled-system'
+import { compose, color, shadow, space, border, typography } from 'styled-system'
 
-const ArticleHeading = styled.div`text-align: center;`
+const ArticleHeading = styled.div`${typography}`
 const ArticleContent = styled.div`
-  padding: 0 25% 3% 25%;
+  ${space}
 
-  @media (max-width: 1000px) {
+  @media (max-width: 1024px) {
     padding: 0 10% 3% 10%;
   }
 `
@@ -24,36 +24,27 @@ const HyperlinkStyle = styled.a`
   }
 `
 const LoadingAnim = styled.h3`
-  margin-top: 50%;
-  margin-bottom: 50%;
+  ${space}
   display: flex;
   justify-content: center;
 `
 const BackButton = styled(Link)`
-  ${color}
-  border-radius: 3px;
-  border: none;
-  padding: 5px;
+  ${compose(color, space, border, typography)}
   transition: all 0.1s ease-in-out;
   text-decoration: none;
-  font-family: filson-pro;
-  font-weight: 600;
 
   &:hover {
-    background-color: ${props => props.theme.colors.grey[2]};
     ${shadow}
+    background-color: ${props => props.theme.colors.grey[2]};
     transform: translate3d(0px, -1px, 0px);
   }
 `
 const ArticleImage = styled.img`
+  ${compose(space, border)}
   display: block;
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
   width: 50%;
-  border-radius: 5px;
   
-  @media (max-width: 1000px) {
+  @media (max-width: 1024px) {
     width: 75%;
   }
 `
@@ -98,29 +89,42 @@ function ArticleDetail() {
   const { articleUid } = useParams()
   const { loading, error, data } = useQuery(getDetails(articleUid))
 
-  if (loading) return <LoadingAnim><Messaging color='black'/></LoadingAnim>
+  if (loading) return <LoadingAnim mt={[12]}><Messaging color='black'/></LoadingAnim>
   if (error) return `${error}`
 
   return (
     <div>
       <ArticleImage
+        mt={[4]}
+        mr={[16]}
+        ml={[16]}
+        borderRadius={[2]}
         src={data.article.feature_image.url}
         alt={data.article.feature_image.alt}
         width='30%' 
       />
-      <ArticleHeading>
+      <ArticleHeading textAlign='center'>
         <h1>{data.article.title[0].text}</h1>
         <h4>{data.article.published_at.substring(0, 10)}</h4>
       </ArticleHeading>
-      <ArticleContent>
+      <ArticleContent 
+        pr={[12]} 
+        pb={[9]} 
+        pl={[12]}
+      >
         {data.article.body.filter(b => b.type === 'inline_text').map((content, index) => {
           return <RichText key={index} render={content.primary.description} htmlSerializer={htmlSerializer} />
         })}<br />
+        {/* grey.3 dot notation picks up nested value.
+            'theme.colors.grey[3]' */}
         <BackButton 
-          to='/' 
-          color='black' 
+          to='/'
+          p={[1]}
+          color='black'
+          fontWeight={[5]}
           bg='grey.3' 
           boxShadow={[0]}
+          borderRadius={[0]}
         >
           Go Back ...
         </BackButton>

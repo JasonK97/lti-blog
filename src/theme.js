@@ -37,6 +37,7 @@ const blue = '#0A415C'
 
 export const theme = {
   breakpoints: ['1024px'],
+  space: [0, 5, 10, 15, 20, 25, 30, 35, 40, '3%', '10%', '20%', '25%', '30%', '40%', '50%', 'auto'],
   colors: {
     grey: [
       '#323232',
@@ -52,11 +53,14 @@ export const theme = {
     '3px 3px 10px 0 rgba(0, 0, 0, 0.2)',
     '10px 10px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
   ],
-  borderWidth: ['1px'],
-  fontSizes: ['12px', '16px', '24px', '36px'],
+  borders: ['1px solid'],
+  radii: ['3px', '4px', '5px', '6px', '8px', '10px'],
   fonts: {
     sansSerif: 'filson-pro'
-  }
+  },
+  fontSizes: ['12px', '16px', '24px', '36px', '42px'],
+  fontWeights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+  textDecoration: ['none']
 }
 
 //////////////////////////////////////////////////////////////////////////////////
