@@ -6,6 +6,7 @@ import { Messaging } from 'react-cssfx-loading/lib'
 import styled from 'styled-components'
 import { compose, color, shadow, border, space, typography, flexbox, layout } from 'styled-system'
 
+
 const TextContent = styled.div`
   ${space}
 
@@ -16,7 +17,7 @@ const TextContent = styled.div`
   }
 `
 const ArticleTile = styled.div`
-  ${compose(border, space, typography)}
+  ${compose(border, space, typography, layout)}
   transition: all 0.2s ease-in-out;
 
   &:hover {
@@ -38,6 +39,7 @@ const LoadingAnim = styled.h3`
 `
 const GridImage = styled.img`${border}`
 
+
 function Posts() {
   const { loading, error, data } = useQuery(GET_POSTS)
 
@@ -51,6 +53,7 @@ function Posts() {
         // 'theme.colors.grey[3]'
         <ArticleTile 
           key={article.node._meta.id}
+          display='grid'
           textAlign='center'
           boxShadow={[1]} 
           border={[0]} 

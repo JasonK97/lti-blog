@@ -7,6 +7,7 @@ import { Messaging } from 'react-cssfx-loading/lib'
 import styled from 'styled-components'
 import { compose, color, shadow, space, border, typography, flexbox, layout } from 'styled-system'
 
+
 const ArticleHeading = styled.div`${typography}`
 const ArticleContent = styled.div`
   ${space}
@@ -80,6 +81,7 @@ export const htmlSerializer = function(type, element, content, children, key) {
 export const linkResolver = (doc) => {
   return '/'
 }
+
 
 function ArticleDetail() {
   const { articleUid } = useParams()
