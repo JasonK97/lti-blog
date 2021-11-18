@@ -100,7 +100,7 @@ function ArticleDetail() {
         display='block'
         src={data.article.feature_image.url}
         alt={data.article.feature_image.alt}
-        width={[13]}
+        width='50%'
       />
       <ArticleHeading textAlign='center'>
         <h1>{data.article.title[0].text}</h1>
