@@ -5,7 +5,7 @@ import { RichText, Elements } from 'prismic-reactjs'
 import { Link, useParams } from 'react-router-dom'
 import { Messaging } from 'react-cssfx-loading/lib'
 import styled from 'styled-components'
-import { compose, color, shadow, space, border, typography } from 'styled-system'
+import { compose, color, shadow, space, border, typography, flexbox, layout } from 'styled-system'
 
 const ArticleHeading = styled.div`${typography}`
 const ArticleContent = styled.div`
@@ -23,11 +23,6 @@ const HyperlinkStyle = styled.a`
     color: ${props => props.theme.colors.grey[0]};
   }
 `
-const LoadingAnim = styled.h3`
-  ${space}
-  display: flex;
-  justify-content: center;
-`
 const BackButton = styled(Link)`
   ${compose(color, space, border, typography)}
   transition: all 0.1s ease-in-out;
@@ -40,13 +35,14 @@ const BackButton = styled(Link)`
   }
 `
 const ArticleImage = styled.img`
-  ${compose(space, border)}
-  display: block;
-  width: 50%;
+  ${compose(space, border, layout)}
   
   @media (max-width: 1024px) {
     width: 75%;
   }
+`
+const LoadingAnim = styled.h3`
+  ${compose(space, flexbox, layout)}
 `
 
 // Function to add a unique key to props
@@ -89,7 +85,7 @@ function ArticleDetail() {
   const { articleUid } = useParams()
   const { loading, error, data } = useQuery(getDetails(articleUid))
 
-  if (loading) return <LoadingAnim mt={[12]}><Messaging color='black'/></LoadingAnim>
+  if (loading) return <LoadingAnim mt={[12]} display='flex' justifyContent='center'><Messaging color='black'/></LoadingAnim>
   if (error) return `${error}`
 
   return (
@@ -99,9 +95,10 @@ function ArticleDetail() {
         mr={[16]}
         ml={[16]}
         borderRadius={[2]}
+        display='block'
         src={data.article.feature_image.url}
         alt={data.article.feature_image.alt}
-        width='30%' 
+        width={[13]}
       />
       <ArticleHeading textAlign='center'>
         <h1>{data.article.title[0].text}</h1>

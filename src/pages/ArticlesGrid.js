@@ -4,7 +4,7 @@ import { GET_POSTS } from '../GraphQL/Queries'
 import { Link } from 'react-router-dom'
 import { Messaging } from 'react-cssfx-loading/lib'
 import styled from 'styled-components'
-import { compose, color, shadow, border, space, typography } from 'styled-system'
+import { compose, color, shadow, border, space, typography, flexbox, layout } from 'styled-system'
 
 const TextContent = styled.div`
   ${space}
@@ -31,22 +31,17 @@ const ContReading = styled(Link)`
 
   ${ArticleTile}:hover & {
     color: ${props => props.theme.colors.blue};
-
   }
 `
 const LoadingAnim = styled.h3`
-  ${space}
-  display: flex;
-  justify-content: center;
+  ${compose(space, flexbox, layout)}
 `
-const GridImage = styled.img`
-  ${border}
-`
+const GridImage = styled.img`${border}`
 
 function Posts() {
   const { loading, error, data } = useQuery(GET_POSTS)
 
-  if (loading) return <LoadingAnim mt={[12]}><Messaging color='black' /></LoadingAnim>
+  if (loading) return <LoadingAnim mt={[12]} display='flex' justifyContent='center'><Messaging color='black' /></LoadingAnim>
   if (error) return `${error}`
 
   return (
@@ -61,10 +56,10 @@ function Posts() {
           border={[0]} 
           borderColor='grey.3' 
           borderRadius={[4]}
-          mt={[4, 4]}
-          mr={[12, 9]}
-          mb={[3, 3]}
-          ml={[12, 9]}
+          mt={[4]}
+          mr={[12]}
+          mb={[3]}
+          ml={[12]}
           pb={[3]}
         >
           <ContReading to={`/${article.node._meta.uid}`} color='black'>
@@ -76,9 +71,9 @@ function Posts() {
               width='100%'
             />
             <TextContent 
-              pr={[8, 3]} 
-              pb={[3, 3]} 
-              pl={[8, 3]}
+              pr={[8]} 
+              pb={[3]} 
+              pl={[8]}
             >
               <h1>{article.node.title[0].text}</h1>
               <h3>Published : {article.node.published_at.substring(0, 10)}</h3>
