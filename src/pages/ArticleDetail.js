@@ -5,17 +5,13 @@ import { RichText, Elements } from 'prismic-reactjs'
 import { Link, useParams } from 'react-router-dom'
 import { Messaging } from 'react-cssfx-loading/lib'
 import styled from 'styled-components'
-import { compose, color, shadow, space, border, typography, flexbox, layout } from 'styled-system'
+import { compose, color, shadow, space, border, typography, layout } from 'styled-system'
+
+import { Flex } from '../components/Flex'
+import { Heading } from '../components/Heading'
+import { Text } from '../components/Text'
 
 
-const ArticleHeading = styled.div`${typography}`
-const ArticleContent = styled.div`
-  ${space}
-
-  @media (max-width: 1024px) {
-    padding: 0 10% 3% 10%;
-  }
-`
 const HyperlinkStyle = styled.a`
   ${color}
   text-decoration: none;
@@ -37,14 +33,8 @@ const BackButton = styled(Link)`
 `
 const ArticleImage = styled.img`
   ${compose(space, border, layout)}
-  
-  @media (max-width: 1024px) {
-    width: 75%;
-  }
 `
-const LoadingAnim = styled.h3`
-  ${compose(space, flexbox, layout)}
-`
+
 
 // Function to add a unique key to props
 const propsWithUniqueKey = function(props, key) {
@@ -87,29 +77,27 @@ function ArticleDetail() {
   const { articleUid } = useParams()
   const { loading, error, data } = useQuery(getDetails(articleUid))
 
-  if (loading) return <LoadingAnim mt={[12]} display='flex' justifyContent='center'><Messaging color='black'/></LoadingAnim>
+  if (loading) return <Flex mt={12} display='flex' justifyContent='center'><Messaging color='black'/></Flex>
   if (error) return `${error}`
 
   return (
     <div>
       <ArticleImage
-        mt={[4]}
-        mr={[16]}
-        ml={[16]}
-        borderRadius={[2]}
+        mt={[0, 4]}
+        mr={[0, 16]}
+        ml={[0, 16]}
+        borderRadius={2}
         display='block'
         src={data.article.feature_image.url}
         alt={data.article.feature_image.alt}
-        width='50%'
+        width={[19, 9]}
       />
-      <ArticleHeading textAlign='center'>
-        <h1>{data.article.title[0].text}</h1>
-        <h4>{data.article.published_at.substring(0, 10)}</h4>
-      </ArticleHeading>
-      <ArticleContent 
-        pr={[12]} 
-        pb={[9]} 
-        pl={[12]}
+      <Heading as='h1' fontSize={[2, 3]} textAlign='center'>{data.article.title[0].text}</Heading>
+      <Heading as='h4' textAlign='center'>{data.article.published_at.substring(0, 10)}</Heading>
+      <Text 
+        pr={[10, 12]} 
+        pb={9} 
+        pl={[10, 12]}
       >
         {data.article.body.filter(b => b.type === 'inline_text').map((content, index) => {
           return <RichText key={index} render={content.primary.description} htmlSerializer={htmlSerializer} />
@@ -118,16 +106,16 @@ function ArticleDetail() {
             'theme.colors.grey[3]' */}
         <BackButton 
           to='/'
-          p={[1]}
+          p={1}
           color='black'
-          fontWeight={[5]}
-          bg='grey.3' 
-          boxShadow={[0]}
-          borderRadius={[0]}
+          fontWeight={5}
+          bg='grey.3'
+          borderRadius={0}
+          boxShadow={0}
         >
           Go Back ...
         </BackButton>
-      </ArticleContent>
+      </Text>
     </div>
   )
 }
