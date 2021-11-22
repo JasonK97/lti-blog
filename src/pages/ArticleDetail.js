@@ -5,11 +5,11 @@ import { RichText, Elements } from 'prismic-reactjs'
 import { Link, useParams } from 'react-router-dom'
 import { Messaging } from 'react-cssfx-loading/lib'
 import styled from 'styled-components'
-import { compose, color, shadow, space, border, typography, layout } from 'styled-system'
+import { compose, color, space, border, typography, layout } from 'styled-system'
 
 import { Flex } from '../components/Flex'
 import { Heading } from '../components/Heading'
-import { Text } from '../components/Text'
+import { Box } from '../components/Box'
 
 
 const HyperlinkStyle = styled.a`
@@ -26,7 +26,7 @@ const BackButton = styled(Link)`
   text-decoration: none;
 
   &:hover {
-    ${shadow}
+    box-shadow: ${props => props.theme.shadows[0]};
     background-color: ${props => props.theme.colors.grey[2]};
     transform: translate3d(0px, -1px, 0px);
   }
@@ -77,24 +77,23 @@ function ArticleDetail() {
   const { articleUid } = useParams()
   const { loading, error, data } = useQuery(getDetails(articleUid))
 
-  if (loading) return <Flex mt={12} display='flex' justifyContent='center'><Messaging color='black'/></Flex>
+  if (loading) return <Flex mt={12} justifyContent='center'><Messaging color='black'/></Flex>
   if (error) return `${error}`
 
   return (
     <div>
       <ArticleImage
-        mt={[0, 4]}
-        mr={[0, 16]}
-        ml={[0, 16]}
-        borderRadius={2}
         display='block'
+        mt={[0, 4]}
+        mx={[0, 16]}
+        borderRadius={2}
         src={data.article.feature_image.url}
         alt={data.article.feature_image.alt}
         width={[19, 9]}
       />
       <Heading as='h1' fontSize={[2, 3]} textAlign='center'>{data.article.title[0].text}</Heading>
       <Heading as='h4' textAlign='center'>{data.article.published_at.substring(0, 10)}</Heading>
-      <Text 
+      <Box
         pr={[10, 12]} 
         pb={9} 
         pl={[10, 12]}
@@ -110,12 +109,11 @@ function ArticleDetail() {
           color='black'
           fontWeight={5}
           bg='grey.3'
-          borderRadius={0}
-          boxShadow={0}
+          borderRadius={[0, 3]}
         >
           Go Back ...
         </BackButton>
-      </Text>
+      </Box>
     </div>
   )
 }

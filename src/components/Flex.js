@@ -12,4 +12,5 @@ import {
 
 export const Flex = styled.div`
     ${compose(color, shadow, space, border, typography, flexbox, layout)}
+    display: flex;
 `

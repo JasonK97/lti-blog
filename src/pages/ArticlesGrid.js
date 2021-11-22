@@ -4,7 +4,7 @@ import { GET_POSTS } from '../GraphQL/Queries'
 import { Link } from 'react-router-dom'
 import { Messaging } from 'react-cssfx-loading/lib'
 import styled from 'styled-components'
-import { compose, color, shadow, border, space, typography, layout } from 'styled-system'
+import { compose, color, border, space, typography, layout } from 'styled-system'
 
 import { Box } from '../components/Box'
 import { Grid } from '../components/Grid'
@@ -18,7 +18,7 @@ const ArticleTile = styled.div`
   transition: all 0.2s ease-in-out;
 
   &:hover {
-    ${shadow}
+    box-shadow: ${props => props.theme.shadows[1]};
     transform: translate3d(0px, -1px, 0px);
   }
 `
@@ -37,7 +37,7 @@ const GridImage = styled.img`${border}`
 function Posts() {
   const { loading, error, data } = useQuery(GET_POSTS)
 
-  if (loading) return <Flex mt={12} display='flex' justifyContent='center'><Messaging color='black' /></Flex>
+  if (loading) return <Flex mt={12} justifyContent='center'><Messaging color='black' /></Flex>
   if (error) return `${error}`
 
   return (
@@ -47,16 +47,13 @@ function Posts() {
           key={article.node._meta.id}
           display='grid'
           textAlign='center'
-          mt={4}
-          mr={[9, 12]}
-          mb={3}
-          ml={[9, 12]}
+          my={3}
+          mx={[9, 12]}
           pb={3}
         >
           {/* grey.3 dot notation picks up nested value.
              'theme.colors.grey[3]' */}
           <ArticleTile 
-            boxShadow={1} 
             borderWidth={0}
             borderStyle='solid'
             borderColor='grey.3' 
@@ -75,7 +72,7 @@ function Posts() {
                 pb={3} 
                 pl={8}
               >
-                <Heading as='h2'>{article.node.title[0].text}</Heading>
+                <Heading as='h2' fontSize={[3, 4]}>{article.node.title[0].text}</Heading>
                 <Heading as='h3'>Published : {article.node.published_at.substring(0, 10)}</Heading>
                 <div>
                   {article.node.body.find((b) => b.type === 'inline_text')?.primary?.description?.map(({ text }, index) => {
