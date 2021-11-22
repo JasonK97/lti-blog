@@ -13,7 +13,11 @@ import { Heading } from '../components/Heading'
 import { Box } from '../components/Box'
 
 
-const BackButton = styled(Link)`
+const BackButton = styled(Link).withConfig({
+  shouldForwardProp: (prop, defaultValidatorFn) =>
+    !['borderRadius'].includes(prop)
+    && defaultValidatorFn(prop),
+})`
   ${compose(color, space, border, typography)}
   transition: all 0.1s ease-in-out;
   text-decoration: none;
@@ -65,7 +69,7 @@ function ArticleDetail() {
           color='black'
           fontWeight={5}
           bg='grey.3'
-          borderRadius={[0, 3]}
+          borderRadius={0}
         >
           Go Back ...
         </BackButton>
