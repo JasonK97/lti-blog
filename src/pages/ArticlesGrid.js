@@ -45,7 +45,6 @@ function Posts() {
       {data.allArticles.edges.map((article) => (
         <Grid
           key={article.node._meta.id}
-          display='grid'
           textAlign='center'
           my={3}
           mx={[9, 12]}

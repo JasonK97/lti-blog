@@ -12,4 +12,5 @@ import {
 
 export const Grid = styled.div`
     ${compose(color, shadow, space, border, typography, grid, layout)}
+    display: grid;
 `

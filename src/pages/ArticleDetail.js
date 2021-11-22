@@ -1,7 +1,8 @@
 import React from 'react'
 import { useQuery } from '@apollo/client'
 import { getDetails } from '../GraphQL/Queries'
-import { RichText, Elements } from 'prismic-reactjs'
+import { htmlSerializer } from '../prismic-configuration'
+import { RichText } from 'prismic-reactjs'
 import { Link, useParams } from 'react-router-dom'
 import { Messaging } from 'react-cssfx-loading/lib'
 import styled from 'styled-components'
@@ -12,14 +13,6 @@ import { Heading } from '../components/Heading'
 import { Box } from '../components/Box'
 
 
-const HyperlinkStyle = styled.a`
-  ${color}
-  text-decoration: none;
-
-  &:hover {
-    color: ${props => props.theme.colors.grey[0]};
-  }
-`
 const BackButton = styled(Link)`
   ${compose(color, space, border, typography)}
   transition: all 0.1s ease-in-out;
@@ -34,43 +27,6 @@ const BackButton = styled(Link)`
 const ArticleImage = styled.img`
   ${compose(space, border, layout)}
 `
-
-
-// Function to add a unique key to props
-const propsWithUniqueKey = function(props, key) {
-  return Object.assign(props || {}, { key })
-}
-
-// HTML Serializer
-// This function changes the way that the HTML is loaded
-export const htmlSerializer = function(type, element, content, children, key) {
-
-  var props = {}
-
-  switch (type) {
-    // Add paragraph elements
-    case Elements.paragraph:
-      return React.createElement('p', propsWithUniqueKey(props, key), children)
-    
-    // Add a class to hyperlinks
-    case Elements.hyperlink:
-      const targetAttr = element.data.target ? { target: element.data.target } : {}
-      const relAttr = element.data.target ? { rel: 'noopener' } : {}
-      props = Object.assign({
-          color: 'red',
-          href: element.data.url || linkResolver(element.data)
-      }, targetAttr, relAttr)
-      return React.createElement(HyperlinkStyle, propsWithUniqueKey(props, key), children)
-
-    default:
-      return null
-  }
-}
-
-// This function handles Links to each page
-export const linkResolver = (doc) => {
-  return '/'
-}
 
 
 function ArticleDetail() {
