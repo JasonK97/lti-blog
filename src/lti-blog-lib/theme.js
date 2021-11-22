@@ -34,5 +34,3 @@ export const theme = {
   sizes: SIZES,
   space: SPACE
 }
-
-export default theme

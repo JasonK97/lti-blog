@@ -37,7 +37,7 @@ function ArticleDetail() {
   const { articleUid } = useParams()
   const { loading, error, data } = useQuery(getDetails(articleUid))
 
-  if (loading) return <Flex mt={'20%'} justifyContent='center'><Messaging color='black'/></Flex>
+  if (loading) return <Flex mt={['60%', '20%']} justifyContent='center'><Messaging color='black'/></Flex>
   if (error) return `${error}`
 
   return (
