@@ -23,8 +23,8 @@ const BackButton = styled(Link).withConfig({
   text-decoration: none;
 
   &:hover {
-    box-shadow: ${props => props.theme.shadows[0]};
-    background-color: ${props => props.theme.colors.grey[2]};
+    box-shadow: ${props => props.theme.shadows[3]};
+    background-color: ${props => props.theme.colors.gray[400]};
     transform: translate3d(0px, -1px, 0px);
   }
 `
@@ -37,39 +37,37 @@ function ArticleDetail() {
   const { articleUid } = useParams()
   const { loading, error, data } = useQuery(getDetails(articleUid))
 
-  if (loading) return <Flex mt={12} justifyContent='center'><Messaging color='black'/></Flex>
+  if (loading) return <Flex mt={'40%'} justifyContent='center'><Messaging color='black'/></Flex>
   if (error) return `${error}`
 
   return (
     <div>
       <ArticleImage
         display='block'
-        mt={[0, 4]}
-        mx={[0, 16]}
+        mt={[0, 4.25]}
+        mx={[0, 'auto']}
         borderRadius={2}
         src={data.article.feature_image.url}
         alt={data.article.feature_image.alt}
-        width={[19, 9]}
+        width={['100%', '50%']}
       />
-      <Heading as='h1' fontSize={[2, 3]} textAlign='center'>{data.article.title[0].text}</Heading>
+      <Heading as='h1' fontSize={['24px', 5]} textAlign='center'>{data.article.title[0].text}</Heading>
       <Heading as='h4' textAlign='center'>{data.article.published_at.substring(0, 10)}</Heading>
       <Box
-        pr={[10, 12]} 
-        pb={9} 
-        pl={[10, 12]}
+        pr={['5%', '25%']} 
+        pb={'5%'} 
+        pl={['5%', '25%']}
       >
         {data.article.body.filter(b => b.type === 'inline_text').map((content, index) => {
           return <RichText key={index} render={content.primary.description} htmlSerializer={htmlSerializer} />
         })}<br />
-        {/* grey.3 dot notation picks up nested value.
-            'theme.colors.grey[3]' */}
         <BackButton 
           to='/'
-          p={1}
+          p={2.25}
           color='black'
-          fontWeight={5}
-          bg='grey.3'
-          borderRadius={0}
+          fontWeight='bold'
+          bg='gray.200'
+          borderRadius={1.5}
         >
           Go Back ...
         </BackButton>

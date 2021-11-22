@@ -5,7 +5,7 @@ import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client'
 import { PrismicLink } from 'apollo-link-prismic'
 import GlobalStyle from './globalStyles'
 import { ThemeProvider } from 'styled-components'
-import { theme } from './theme'
+import { theme } from './lti-blog-lib/theme'
 
 const client = new ApolloClient({
   link: PrismicLink({

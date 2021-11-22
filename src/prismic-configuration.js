@@ -9,7 +9,7 @@ const HyperlinkStyle = styled.a`
   text-decoration: none;
 
   &:hover {
-    color: ${props => props.theme.colors.grey[0]};
+    color: ${props => props.theme.colors.gray[700]};
   }
 `
 
@@ -34,7 +34,7 @@ export const htmlSerializer = function(type, element, content, children, key) {
       const targetAttr = element.data.target ? { target: element.data.target } : {}
       const relAttr = element.data.target ? { rel: 'noopener' } : {}
       props = Object.assign({
-          color: 'red',
+          color: 'red.600',
           href: element.data.url || linkResolver(element.data)
       }, targetAttr, relAttr)
       return React.createElement(HyperlinkStyle, propsWithUniqueKey(props, key), children)

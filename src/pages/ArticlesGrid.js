@@ -18,7 +18,7 @@ const ArticleTile = styled.div`
   transition: all 0.2s ease-in-out;
 
   &:hover {
-    box-shadow: ${props => props.theme.shadows[1]};
+    box-shadow: ${props => props.theme.shadows[4]};
     transform: translate3d(0px, -1px, 0px);
   }
 `
@@ -28,7 +28,7 @@ const ContReading = styled(Link)`
   transition: all 0.2s ease-in-out;
 
   ${ArticleTile}:hover & {
-    color: ${props => props.theme.colors.blue};
+    color: ${props => props.theme.colors.blue[800]};
   }
 `
 const GridImage = styled.img`${border}`
@@ -37,7 +37,7 @@ const GridImage = styled.img`${border}`
 function Posts() {
   const { loading, error, data } = useQuery(GET_POSTS)
 
-  if (loading) return <Flex mt={12} justifyContent='center'><Messaging color='black' /></Flex>
+  if (loading) return <Flex mt={'40%'} justifyContent='center'><Messaging color='black' /></Flex>
   if (error) return `${error}`
 
   return (
@@ -46,32 +46,29 @@ function Posts() {
         <Grid
           key={article.node._meta.id}
           textAlign='center'
-          my={3}
-          mx={[9, 12]}
-          pb={3}
+          my={3.75}
+          mx={['5%', '25%']}
+          pb={2}
         >
-          {/* grey.3 dot notation picks up nested value.
-             'theme.colors.grey[3]' */}
           <ArticleTile 
-            borderWidth={0}
+            borderWidth={0.5}
             borderStyle='solid'
-            borderColor='grey.3' 
-            borderRadius={4}
+            borderColor='gray.100' 
+            borderRadius={3}
           >
             <ContReading to={`/${article.node._meta.uid}`} color='black'>
               <GridImage
-                borderTopLeftRadius={4}
-                borderTopRightRadius={4}
+                borderTopLeftRadius={2.75}
+                borderTopRightRadius={2.75}
                 src={article.node.feature_image.url}
                 alt={article.node.feature_image.alt}
                 width='100%'
               />
               <Box 
-                pr={8} 
-                pb={3} 
-                pl={8}
+                px={5.25} 
+                pb={3.75}
               >
-                <Heading as='h2' fontSize={[3, 4]}>{article.node.title[0].text}</Heading>
+                <Heading as='h2' fontSize={['28px', 5]}>{article.node.title[0].text}</Heading>
                 <Heading as='h3'>Published : {article.node.published_at.substring(0, 10)}</Heading>
                 <div>
                   {article.node.body.find((b) => b.type === 'inline_text')?.primary?.description?.map(({ text }, index) => {
