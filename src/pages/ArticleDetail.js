@@ -37,7 +37,7 @@ function ArticleDetail() {
   const { articleUid } = useParams()
   const { loading, error, data } = useQuery(getDetails(articleUid))
 
-  if (loading) return <Flex mt={'40%'} justifyContent='center'><Messaging color='black'/></Flex>
+  if (loading) return <Flex mt={'20%'} justifyContent='center'><Messaging color='black'/></Flex>
   if (error) return `${error}`
 
   return (
@@ -51,7 +51,7 @@ function ArticleDetail() {
         alt={data.article.feature_image.alt}
         width={['100%', '50%']}
       />
-      <Heading as='h1' fontSize={['24px', 5]} textAlign='center'>{data.article.title[0].text}</Heading>
+      <Heading as='h1' fontSize={['xl', '3xl']} textAlign='center'>{data.article.title[0].text}</Heading>
       <Heading as='h4' textAlign='center'>{data.article.published_at.substring(0, 10)}</Heading>
       <Box
         pr={['5%', '25%']} 

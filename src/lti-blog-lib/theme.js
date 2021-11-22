@@ -35,4 +35,4 @@ export const theme = {
   space: SPACE
 }
 
-// export default theme
+export default theme

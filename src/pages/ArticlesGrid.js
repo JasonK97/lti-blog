@@ -37,7 +37,7 @@ const GridImage = styled.img`${border}`
 function Posts() {
   const { loading, error, data } = useQuery(GET_POSTS)
 
-  if (loading) return <Flex mt={'40%'} justifyContent='center'><Messaging color='black' /></Flex>
+  if (loading) return <Flex mt={'20%'} justifyContent='center'><Messaging color='black' /></Flex>
   if (error) return `${error}`
 
   return (
