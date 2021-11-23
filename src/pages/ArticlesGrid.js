@@ -37,7 +37,7 @@ const GridImage = styled.img`${border}`
 function Posts() {
   const { loading, error, data } = useQuery(GET_POSTS)
 
-  if (loading) return <Flex mt={['60%', '20%']} justifyContent='center'><Messaging color='black' /></Flex>
+  if (loading) return <Flex mt={['60%', null, null, '20%', null]} justifyContent='center'><Messaging color='black' /></Flex>
   if (error) return `${error}`
 
   return (
@@ -47,7 +47,7 @@ function Posts() {
           key={article.node._meta.id}
           textAlign='center'
           my={3.75}
-          mx={['5%', '25%']}
+          mx={['5%', null, null, '25%', null]}
           pb={2}
         >
           <ArticleTile 
@@ -68,7 +68,7 @@ function Posts() {
                 px={5.25} 
                 pb={3.75}
               >
-                <Heading as='h2' fontSize={['28px', 5]}>{article.node.title[0].text}</Heading>
+                <Heading as='h2' fontSize={[4.75, null, null, 5, null]}>{article.node.title[0].text}</Heading>
                 <Heading as='h3'>Published : {article.node.published_at.substring(0, 10)}</Heading>
                 <div>
                   {article.node.body.find((b) => b.type === 'inline_text')?.primary?.description?.map(({ text }, index) => {

@@ -26,7 +26,7 @@ export const theme = {
   borderWidths: SPACE,
   colors: COLORS,
   fonts: FONT_FAMILIES,
-  FontSizes: FONT_SIZES,
+  fontSizes: FONT_SIZES,
   fontWeights: FONT_WEIGHTS,
   lineHeights: LINE_HEIGHTS,
   radii: SPACE,

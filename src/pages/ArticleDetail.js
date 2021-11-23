@@ -44,19 +44,18 @@ function ArticleDetail() {
     <div>
       <ArticleImage
         display='block'
-        mt={[0, 4.25]}
-        mx={[0, 'auto']}
+        mt={[0, null, null, 4.25, null]}
+        mx={[0, null, null, 'auto', null]}
         borderRadius={2}
         src={data.article.feature_image.url}
         alt={data.article.feature_image.alt}
-        width={['100%', '50%']}
+        width={['100%', null, null, '50%', null]}
       />
-      <Heading as='h1' fontSize={['xl', '3xl']} textAlign='center'>{data.article.title[0].text}</Heading>
+      <Heading as='h1' fontSize={[4.75, null, null, 5, null]} textAlign='center'>{data.article.title[0].text}</Heading>
       <Heading as='h4' textAlign='center'>{data.article.published_at.substring(0, 10)}</Heading>
       <Box
-        pr={['5%', '25%']} 
-        pb={'5%'} 
-        pl={['5%', '25%']}
+        px={['5%', null, null, '25%', null]} 
+        pb={'5%'}
       >
         {data.article.body.filter(b => b.type === 'inline_text').map((content, index) => {
           return <RichText key={index} render={content.primary.description} htmlSerializer={htmlSerializer} />
