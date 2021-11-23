@@ -65,7 +65,7 @@ function ArticleDetail() {
           p={2.25}
           color='black'
           fontWeight='bold'
-          bg='gray.200'
+          bg='gray.100'
           borderRadius={1.5}
         >
           Go Back ...
