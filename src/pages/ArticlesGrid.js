@@ -46,8 +46,9 @@ function Posts() {
       {data.allArticles.edges.map((article) => (
         <Grid
           as={motion.div}
-          whileHover={{ scale: 1.03 }}
+          whileHover={{ scale: 1.01 }}
           whileTap={{ scale: 0.95 }}
+          transition={{ duration: .2 }}
           key={article.node._meta.id}
           textAlign='center'
           my={3.75}
