@@ -51,11 +51,11 @@ function ArticleDetail() {
         alt={data.article.feature_image.alt}
         width={['100%', null, null, '50%', null]}
       />
-      <Heading as='h1' fontSize={[4.75, null, null, 5, null]} textAlign='center'>{data.article.title[0].text}</Heading>
+      <Heading as='h1' fontSize={['2xl', null, null, '3xl', null]} textAlign='center'>{data.article.title[0].text}</Heading>
       <Heading as='h4' textAlign='center'>{data.article.published_at.substring(0, 10)}</Heading>
       <Box
         px={['5%', null, null, '25%', null]} 
-        pb={'5%'}
+        pb={'2%'}
       >
         {data.article.body.filter(b => b.type === 'inline_text').map((content, index) => {
           return <RichText key={index} render={content.primary.description} htmlSerializer={htmlSerializer} />
@@ -70,7 +70,7 @@ function ArticleDetail() {
             p={2.25}
             color='black'
             fontFamily='filson-pro'
-            fontSize={4}
+            fontSize={'md'}
             fontWeight='bold'
             bg='gray.100'
             borderRadius={1.5}

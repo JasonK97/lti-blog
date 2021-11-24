@@ -6,7 +6,7 @@ function App() {
   return (
     <Router>
       <Switch>
-      <Route exact path='/'>
+        <Route exact path='/'>
           <ArticlesGrid />
         </Route>
         <Route path='/:articleUid'>
