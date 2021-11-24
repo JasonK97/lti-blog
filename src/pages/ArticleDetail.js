@@ -61,8 +61,8 @@ function ArticleDetail() {
           return <RichText key={index} render={content.primary.description} htmlSerializer={htmlSerializer} />
         })}<br />
         <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          whileHover={{ y: -3 }}
+          whileTap={{ y: 2 }}
           style={{ background: 'transparent', border: 'none' }}
         >
           <BackButton 

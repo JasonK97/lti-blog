@@ -16,11 +16,11 @@ import { Text } from '../components/Text'
 
 const ArticleTile = styled.div`
   ${compose(border, space, typography, layout)}
+  transition: all 0.2s ease-in-out;
   
-
   &:hover {
     box-shadow: ${props => props.theme.shadows[4]};
-    
+    background-color: ${props => props.theme.colors.gray[50]};
   }
 `
 const ContReading = styled(Link)`
@@ -46,8 +46,8 @@ function Posts() {
       {data.allArticles.edges.map((article) => (
         <Grid
           as={motion.div}
-          whileHover={{ scale: 1.01 }}
-          whileTap={{ scale: 0.95 }}
+          whileHover={{ y: -5 }}
+          whileTap={{ y: 2 }}
           transition={{ duration: .2 }}
           key={article.node._meta.id}
           textAlign='center'
