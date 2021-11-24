@@ -5,6 +5,7 @@ import { htmlSerializer } from '../prismic-configuration'
 import { RichText } from 'prismic-reactjs'
 import { Link, useParams } from 'react-router-dom'
 import { Messaging } from 'react-cssfx-loading/lib'
+import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import { compose, color, space, border, typography, layout } from 'styled-system'
 
@@ -19,15 +20,14 @@ const BackButton = styled(Link).withConfig({
     && defaultValidatorFn(prop),
 })`
   ${compose(color, space, border, typography)}
-  transition: all 0.1s ease-in-out;
   text-decoration: none;
 
   &:hover {
-    box-shadow: ${props => props.theme.shadows[3]};
+    box-shadow: ${props => props.theme.shadows[2]};
     background-color: ${props => props.theme.colors.gray[400]};
-    transform: translate3d(0px, -1px, 0px);
   }
 `
+// const BackButton = motion(Button)
 const ArticleImage = styled.img`
   ${compose(space, border, layout)}
 `
@@ -37,7 +37,7 @@ function ArticleDetail() {
   const { articleUid } = useParams()
   const { loading, error, data } = useQuery(getDetails(articleUid))
 
-  if (loading) return <Flex mt={['60%', '20%']} justifyContent='center'><Messaging color='black'/></Flex>
+  if (loading) return <Flex mt={['60%', null, null, '20%', null]} justifyContent='center'><Messaging color='black'/></Flex>
   if (error) return `${error}`
 
   return (
@@ -60,16 +60,24 @@ function ArticleDetail() {
         {data.article.body.filter(b => b.type === 'inline_text').map((content, index) => {
           return <RichText key={index} render={content.primary.description} htmlSerializer={htmlSerializer} />
         })}<br />
-        <BackButton 
-          to='/'
-          p={2.25}
-          color='black'
-          fontWeight='bold'
-          bg='gray.100'
-          borderRadius={1.5}
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          style={{ background: 'transparent', border: 'none' }}
         >
-          Go Back ...
-        </BackButton>
+          <BackButton 
+            to='/'
+            p={2.25}
+            color='black'
+            fontFamily='filson-pro'
+            fontSize={4}
+            fontWeight='bold'
+            bg='gray.100'
+            borderRadius={1.5}
+          >
+            Go Back ...
+          </BackButton>
+        </motion.button>
       </Box>
     </div>
   )

@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/client'
 import { GET_POSTS } from '../GraphQL/Queries'
 import { Link } from 'react-router-dom'
 import { Messaging } from 'react-cssfx-loading/lib'
+import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import { compose, color, border, space, typography, layout } from 'styled-system'
 
@@ -13,13 +14,16 @@ import { Heading } from '../components/Heading'
 import { Text } from '../components/Text'
 
 
+// transition: all 0.2s ease-in-out;
+// transform: translate3d(0px, -1px, 0px);
+
 const ArticleTile = styled.div`
   ${compose(border, space, typography, layout)}
-  transition: all 0.2s ease-in-out;
+  
 
   &:hover {
     box-shadow: ${props => props.theme.shadows[4]};
-    transform: translate3d(0px, -1px, 0px);
+    
   }
 `
 const ContReading = styled(Link)`
@@ -44,6 +48,9 @@ function Posts() {
     <div>
       {data.allArticles.edges.map((article) => (
         <Grid
+          as={motion.div}
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.95 }}
           key={article.node._meta.id}
           textAlign='center'
           my={3.75}
