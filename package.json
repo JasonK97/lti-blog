@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.4.16",
+    "@leisuretimeinc/lti-lib": "^1.0.16",
     "@prismicio/client": "^5.1.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
