@@ -5,7 +5,14 @@ import { Link } from 'react-router-dom'
 import { Messaging } from 'react-cssfx-loading/lib'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
-import { compose, color, border, space, typography, layout } from 'styled-system'
+import { 
+  compose, 
+  color, 
+  border, 
+  space, 
+  typography, 
+  layout 
+} from 'styled-system'
 
 import { Box } from '../components/Box'
 import { Grid } from '../components/Grid'
