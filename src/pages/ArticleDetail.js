@@ -7,7 +7,14 @@ import { Link, useParams } from 'react-router-dom'
 import { Messaging } from 'react-cssfx-loading/lib'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
-import { compose, color, space, border, typography, layout } from 'styled-system'
+import { 
+  compose, 
+  color, 
+  space, 
+  border, 
+  typography, 
+  layout 
+} from 'styled-system'
 
 import { Flex } from '../components/Flex'
 import { Heading } from '../components/Heading'
