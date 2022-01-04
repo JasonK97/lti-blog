@@ -27,7 +27,7 @@ export const GET_POSTS = gql`
   }
 `;
 
-export function getDetails(slug) {
+export function GET_DETAILS(slug) {
   var GET_POST_DETAILS = gql`
     query getArticle($n: String = "${slug}") {
       article(uid: $n, lang: "en-us") {

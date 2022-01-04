@@ -1,6 +1,6 @@
 import React from 'react'
 import { useQuery } from '@apollo/client'
-import { getDetails } from '../GraphQL/Queries'
+import { GET_DETAILS } from '../GraphQL/Queries'
 import { htmlSerializer } from '../prismic-configuration'
 import { RichText } from 'prismic-reactjs'
 import { Link, useParams } from 'react-router-dom'
@@ -42,7 +42,7 @@ const ArticleImage = styled.img`
 
 function ArticleDetail() {
   const { articleUid } = useParams()
-  const { loading, error, data } = useQuery(getDetails(articleUid))
+  const { loading, error, data } = useQuery(GET_DETAILS(articleUid))
 
   if (loading) return <Flex mt={['60%', null, null, '20%', null]} justifyContent='center'><Messaging color='black'/></Flex>
   if (error) return `${error}`
